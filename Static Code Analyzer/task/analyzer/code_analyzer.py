@@ -4,7 +4,7 @@ import re
 import ast
 import astunparse
 
-# write your code here
+
 class CustomLenException(Exception):
     def __init__(self, i, path_):
         self.message = str(path_) + ": Line {}: S001 Too long".format(i)
@@ -185,8 +185,6 @@ class OwnCodeAnalyzer:
             full_string += i
         tree = ast.parse(full_string)
         self.full_tree = tree
-        # print(ast.dump(self.full_tree))
-        # print(self.full_tree)
 
     def tree_walk(self):
         for node in ast.walk(self.full_tree):
@@ -412,31 +410,11 @@ class OwnCodeAnalyzer:
 
 
 def main():
-    # test = OwnCodeAnalyzer(input())
     result_files = files_directories_check()
     for s in result_files:
-        # full_path = os.path.abspath(s)
         test = OwnCodeAnalyzer(s)
         test.launch_all_tests()
-        '''
-        test.file_to_lines()
-        test.len_check()
-        test.multiply_of_four_check()
-        test.unn_semicolon_check()
-        test.less_space_check()
-        test.todo_check()
-        test.blank_lines_check()
-        test.too_many_spaces_check()
-        test.camel_case_check()
-        test.snake_case_check()
-        '''
         test.dictionary_print()
-        # my_keys = list(test.errors_array.keys())
-        # my_keys.sort()
-        # sorted_dict = {i: test.errors_array[i] for i in my_keys}
-        # for i in sorted_dict.values():
-        #     for j in i:
-        #         print(j)
 
 
 if __name__ == "__main__":
